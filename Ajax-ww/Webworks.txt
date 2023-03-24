@@ -1,0 +1,11 @@
+HTTP - a protocol that allows browsers and servers communicate for standard web.
+URL - an address made up of protocol, hostname, port, resource,query.
+Domain name system - convert a readable name into an IP address.
+Query string - Arguments passed into the URL that provides extra info.
+Get - Retrieves information on webpage through the query. Does not make changes. Post - makes changes to the webpage, arguments passed in through the body.
+HTTP request - When the web browser is searching for a URL it sends a request to a server with the info in the URL
+HTTP response - if what your searching for is found you get back HTML/text, response code from the server
+HTTP header - give more info on request/response
+URl in browser - browser sends a request to server with the info from the URL.
+hostname is converted to an IP address by DNS. If webpage is found you get a response
+back from the server with HTML/Text and a response code.
