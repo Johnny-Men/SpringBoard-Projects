@@ -4,12 +4,17 @@
  * column until a player gets four-in-a-row (horiz, vert, or diag) or until
  * board fills (tie)
  */
+
+
+  
+
 class Game{
-  constructor(height,width){
+  constructor(p1,p2,height,width){
+    this.players = [p1,p2];
     this.HEIGHT = height;
     this.WIDTH = width;
     this.board = [];
-    this.currPlayer = 1;
+    this.currPlayer = this.players[0];
   }
   
   startGame(){
@@ -17,9 +22,6 @@ class Game{
 
     const removeForm = document.createElement('form');
 
-    const remove = document.querySelector('.start-game');
-
-    remove.remove();
 
     const resetButton = document.createElement('button');
 
@@ -39,9 +41,8 @@ class Game{
     for (let y = 0; y < this.HEIGHT; y++) {
       this.board.push(Array.from({ length: this.WIDTH }));
     }
-
-    const startButton = document.querySelector('.start-game');
-    startButton.addEventListener('click', (evt =>{
+    const colorButton = document.querySelector('.color-button');
+    colorButton.addEventListener('click', (evt =>{
       this.startGame();
     }));
   }
@@ -88,9 +89,14 @@ class Game{
   placeInTable(y, x) {
     const piece = document.createElement('div');
     piece.classList.add('piece');
-    piece.classList.add(`p${this.currPlayer}`);
+    console.log(this.currPlayer);
+    if(this.currPlayer === this.players[0]){
+      piece.style.backgroundColor = this.currPlayer;
+    }
+    else{piece.style.backgroundColor = this.players[1];}
     piece.style.top = -50 * (y + 2);
     const spot = document.getElementById(`${y}-${x}`);
+    console.log(spot);
     spot.append(piece);
   }
   endGame(msg) {
@@ -105,6 +111,7 @@ class Game{
       return;
 
     }
+    console.log(x,y);
     // place piece in board and add to HTML table
     this.board[y][x] = this.currPlayer;
     this.placeInTable(y, x);
@@ -121,7 +128,14 @@ class Game{
     }
       
     // switch players
-    this.currPlayer = this.currPlayer === 1 ? 2 : 1;
+  //  this.currPlayer === this.players[0] ? this.players[1] : this.players[0];
+  //  console.log(this.currPlayer);
+  if(this.currPlayer === this.players[0]){
+    this.currPlayer = this.players[1];
+  }
+  else{
+    this.currPlayer = this.players[0];
+  }
   }
   checkForWin() {
     const _win = (cells) => {
@@ -155,10 +169,24 @@ class Game{
   }
 }
 
+class Player {
+  constructor(color){
+    this.color = color;
+  }
+}
 
-const firstGame = new Game(6,7);
+const colorButton = document.querySelector('.color-button');
+  
+  colorButton.addEventListener('click', function(evt){
+    evt.preventDefault();
+    let p1Color = new Player(document.querySelector('.player-1').value);
+    let p2Color = new Player(document.querySelector('.player-2').value);
+    const newGame = new Game(p1Color.color,p2Color.color,6,7);
+    newGame.startGame();
+    p1Color.value = '';
+    p2Color.value = '';
+  })
 
-firstGame.makeBoard();
 
 // firstGame.makeHtmlBoard();
 
