@@ -1,0 +1,37 @@
+/* some colors you may find useful:
+  #115ff4
+  #060ce9
+  #28a200
+  #8d2ab5
+  #74119c
+*/
+.jeopardy {
+  height: 90%;
+  width: 100%;
+  border : 1px solid;
+  border-collapse: collapse;
+  background-color:   #060ce9 ;
+  color: white;
+  box-sizing: border-box;
+}
+
+.thead-tr {
+  height: 50px;
+}
+
+.t-body {
+  height: 500px;
+}
+
+th {
+  border: 1px solid;
+}
+
+td {
+  border: 1px solid;
+  width: 150px;
+  height: 150px;
+  text-align: center;
+  box-sizing: border-box;
+  padding: 0%;
+}
